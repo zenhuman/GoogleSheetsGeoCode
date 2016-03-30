@@ -1,24 +1,6 @@
 # GoogleSheetsGeoCode
 Custom GeoCode function for sheets
 
-// Pretty straightforward. Just paste into Script Editor. Now you have a geocode function!
-// Input any place name to geocode. Uses Google Maps API. 
+Pretty straightforward. Just paste into Script Editor. Now you have a geocode function!
+Input any place name to geocode. Uses Google Maps API. 
 
-function latlong(location) {
-
-  var locationClean = location.replace(/" ","+"/)
-  var url = "http://maps.googleapis.com/maps/api/geocode/json?address="+locationClean+"&sensor=false";
-  var options = {
-        "method": "GET",
-        "contentType": "application/json",
-    };
-    var response = UrlFetchApp.fetch(url, options);
-    var data = JSON.parse(response.getContentText());
-    var prelat = data.results[0].geometry.location.lat;
-    var prelon = data.results[0].geometry.location.lng;
-  
-  var lat = JSON.stringify(prelat);
-  var lon = JSON.stringify(prelon);
-  var latlong = lat+","+lon
-  return latlong;
-}
